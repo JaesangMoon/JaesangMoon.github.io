@@ -12,9 +12,6 @@ const canvas = document.getElementById('glCanvas');
 const gl = canvas.getContext('webgl2');
 let shader;
 let vao;
-let colorTag = "red";
-let verticalFlip = 1.0; // 1.0 for normal, -1.0 for vertical flip
-let textOverlay3; // for text output third line (see util.js)
 
 function initWebGL() {
     if (!gl) {
@@ -42,30 +39,32 @@ async function initShader() {
 
 let x = 0.00;
 let y = 0.00;
+let letme_go = false;
+let keys = null;
 
 function setupKeyboardEvents() {
+
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowUp') {
-            if (y + 0.1 < 1){
-                y = y + 0.01;
-            }
-        }
-        else if (event.key === 'ArrowDown') {
-            if (y - 0.1 > -1){
-                y = y - 0.01;
-            }
-        }
-        else if (event.key === 'ArrowLeft') {
-            if (x - 0.1 > -1){
-                x = x - 0.01;
-            }
-        }
-        else if (event.key === 'ArrowRight') {
-            if (x + 0.1 < 1){
-                x = x + 0.01;
-            }
-        }
+        letme_go = true;
+        keys = event.key;
     });
+
+    document.addEventListener('keyup', (event) => {
+        letme_go = false;
+        keys = null;
+    });
+}
+
+function f5_pos() {
+    if (letme_go == true && keys === 'ArrowUp' && y + 0.1 < 1){
+        y = y + 0.01;
+    } else if (letme_go == true && keys === 'ArrowDown' && y - 0.1 > -1){
+        y = y - 0.01;
+    } else if (letme_go == true && keys === 'ArrowRight' && x + 0.1 < 1){
+        x = x + 0.01;
+    } else if (letme_go == true && keys === 'ArrowLeft' && x - 0.1 > -1){
+        x = x - 0.01;
+    }
 }
 
 function setupBuffers(shader) {
@@ -90,6 +89,8 @@ function setupBuffers(shader) {
 
 function render(vao, shader) {
     gl.clear(gl.COLOR_BUFFER_BIT);
+
+    f5_pos();
 
     let color = [1.0, 0.0, 0.0, 1.0];
     shader.setVec4("uColor", color);
