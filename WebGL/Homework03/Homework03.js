@@ -255,7 +255,7 @@ function render() {
     // 임시 선 그리기
     
     if (isDrawing && startPoint && tempEndPoint && nom == 0) {
-        shader.setVec4("u_color", [1.0, 0.0, 1.0, 1.0]);
+        shader.setVec4("u_color", [0.5, 0.5, 0.5, 1.0]);
 
         let r = Math.sqrt((startPoint[0]-tempEndPoint[0])**2 + (startPoint[1]-tempEndPoint[1])**2);
 
