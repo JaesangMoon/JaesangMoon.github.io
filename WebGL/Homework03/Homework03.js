@@ -320,45 +320,37 @@ async function main() {
 }
 
 function getIntersection(r, lines) {
-    const cx = lines[0][0];
-    const cy = lines[0][1];
+    const x3 = lines[0][0];
+    const y3 = lines[0][1];
 
     const x1 = lines[1][0];
     const y1 = lines[1][1];
     const x2 = lines[1][2];
     const y2 = lines[1][3];
 
-    const dx = x2 - x1;
-    const dy = y2 - y1;
+    const a = (x2 - x1) ** 2 + (y2 - y1) ** 2;
+    const b = 2 * ((x2 - x1) * (x1 - x3) + (y2 - y1) * (y1 - y3));
+    const c = (x1 - x3) ** 2 + (y1 - y3) ** 2 - r ** 2;
 
-    const fx = x1 - cx;
-    const fy = y1 - cy;
+    const dsc = b ** 2 - 4 * a * c;
 
-    const a = dx * dx + dy * dy;
-    const b = 2 * (fx * dx + fy * dy);
-    const c = fx * fx + fy * fy - r * r;
+    let answer_arr = [];
+    if (dsc < 0){
+        return answer_arr;
+    } else{
+        const t1 = (-b + Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a);
+        const t2 = (-b - Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a);
 
-    const discriminant = b * b - 4 * a * c;
-    const result = [];
+        if (t1 >= 0 && t1 <= 1){
+            answer_arr.push(x1 + (x2 - x1) * t1);
+            answer_arr.push(y1 + (y2 - y1) * t1);
+        }
 
-    if (discriminant < 0) {
-        // 교차점 없음
-        return result;
+        if (t2 >= 0 && t2 <= 1){
+            answer_arr.push(x1 + (x2 - x1) * t2);
+            answer_arr.push(y1 + (y2 - y1) * t2);
+        }
+
+        return answer_arr;
     }
-
-    const sqrtD = Math.sqrt(discriminant);
-    const t1 = (-b - sqrtD) / (2 * a);
-    const t2 = (-b + sqrtD) / (2 * a);
-
-    if (0 <= t1 && t1 <= 1) {
-        result.push(x1 + dx * t1);
-        result.push(y1 + dy * t1);
-    }
-
-    if (0 <= t2 && t2 <= 1 && discriminant !== 0) {
-        result.push(x1 + dx * t2);
-        result.push(y1 + dy * t2);
-    }
-
-    return result;
 }
