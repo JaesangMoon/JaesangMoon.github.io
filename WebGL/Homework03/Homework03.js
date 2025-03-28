@@ -1,14 +1,3 @@
-/*-------------------------------------------------------------------------
-07_LineSegments.js
-
-left mouse button을 click하면 선분을 그리기 시작하고, 
-button up을 하지 않은 상태로 마우스를 움직이면 임시 선분을 그리고, 
-button up을 하면 최종 선분을 저장하고 임시 선분을 삭제함.
-
-임시 선분의 color는 회색이고, 최종 선분의 color는 빨간색임.
-
-이 과정을 반복하여 여러 개의 선분 (line segment)을 그릴 수 있음. 
----------------------------------------------------------------------------*/
 import { resizeAspectRatio, setupText, updateText, Axes } from '../util/util.js';
 import { Shader, readShaderFile } from '../util/shader.js';
 
@@ -227,7 +216,7 @@ function render() {
             
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
             gl.bindVertexArray(vao);
-            gl.drawArrays(gl.LINES, 0, 201);
+            gl.drawArrays(gl.LINES, 0, 401);
         }
         else { // num == 1 (두 번째 선분인 경우), red
             shader.setVec4("u_color", [1.0, 0.0, 1.0, 1.0]);
@@ -269,7 +258,7 @@ function render() {
         }
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
             gl.bindVertexArray(vao);
-            gl.drawArrays(gl.LINES, 0, 201);
+            gl.drawArrays(gl.LINES, 0, 401);
         
     } else if (isDrawing && startPoint && tempEndPoint && nom == 1) {
         shader.setVec4("u_color", [0.5, 0.5, 0.5, 1.0]); // 임시 선분의 color는 회색
