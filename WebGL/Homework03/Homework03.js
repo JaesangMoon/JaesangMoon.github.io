@@ -219,8 +219,10 @@ function render() {
 
             let circle_line = [];
 
+            circle_line.push(line[0] + r, line[1]);
+
             for (let i = 0; i <= 200; i++){
-                circle_line.push(line[0] + r * Math.cos(i * Math.PI/100), line[1] + r * Math.sin(i * Math.PI/100));
+                circle_line.push(line[0] + r * Math.cos(i * Math.PI/100), line[1] + r * Math.sin(i * Math.PI/100), line[0] + r * Math.cos(i * Math.PI/100), line[1] + r * Math.sin(i * Math.PI/100));
             }
             
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
@@ -258,9 +260,11 @@ function render() {
 
         let r = Math.sqrt((startPoint[0]-tempEndPoint[0])**2 + (startPoint[1]-tempEndPoint[1])**2);
         let circle_line = [];
+
+        circle_line.push(startPoint[0] + r, startPoint[1]);
         
         for (let i = 0; i <= 200; i++){
-            circle_line.push(startPoint[0] + r * Math.cos(i * Math.PI/100), startPoint[1] + r * Math.sin(i * Math.PI/100));
+            circle_line.push(startPoint[0] + r * Math.cos(i * Math.PI/100), startPoint[1] + r * Math.sin(i * Math.PI/100), startPoint[0] + r * Math.cos(i * Math.PI/100), startPoint[1] + r * Math.sin(i * Math.PI/100));
 
         }
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
