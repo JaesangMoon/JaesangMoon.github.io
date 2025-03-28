@@ -213,7 +213,7 @@ function render() {
 
     for (let line of lines) {
         if (num == 0) { // 첫 번째 원원인 경우, red
-            shader.setVec4("u_color", [1.0, 0.0, 1.0, 1.0]);
+            shader.setVec4("u_color", [1.0, 1.0, 1.0, 1.0]);
 
             let r = Math.sqrt((lines[0][0]-lines[0][2])**2 + (lines[0][1]-lines[0][3])**2);
 
