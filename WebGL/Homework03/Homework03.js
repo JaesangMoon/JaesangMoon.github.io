@@ -213,7 +213,7 @@ function render() {
 
     for (let line of lines) {
         if (num == 0) { // 첫 번째 원원인 경우, red
-            shader.setVec4("u_color", [1.0, 1.0, 1.0, 1.0]);
+            shader.setVec4("u_color", [1.0, 0.0, 1.0, 1.0]);
 
             let r = Math.sqrt((lines[0][0]-lines[0][2])**2 + (lines[0][1]-lines[0][3])**2);
 
@@ -222,7 +222,7 @@ function render() {
                                    line[0] + r * Math.cos((i + 1) * Math.PI/100), line[1] + r * Math.sin((i + 1) * Math.PI/100)];
 
                 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
-                //gl.bindVertexArray(vao);
+                gl.bindVertexArray(vao);
                 gl.drawArrays(gl.LINES, 0, 2);
             }
 
@@ -264,7 +264,7 @@ function render() {
                                startPoint[0] + r * Math.cos((i + 1) * Math.PI/100), startPoint[1] + r * Math.sin((i + 1) * Math.PI/100)];
 
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
-            //gl.bindVertexArray(vao);
+            gl.bindVertexArray(vao);
             gl.drawArrays(gl.LINES, 0, 2);
         }
     } else if (isDrawing && startPoint && tempEndPoint && nom == 1) {
