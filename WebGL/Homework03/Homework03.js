@@ -217,16 +217,15 @@ function render() {
 
             let r = Math.sqrt((lines[0][0]-lines[0][2])**2 + (lines[0][1]-lines[0][3])**2);
 
-            for (let i = 0; i < 200; i++){
-                let circle_line = [line[0] + r * Math.cos(i * Math.PI/100), line[1] + r * Math.sin(i * Math.PI/100),
-                                   line[0] + r * Math.cos((i + 1) * Math.PI/100), line[1] + r * Math.sin((i + 1) * Math.PI/100)];
+            let circle_line = [];
 
-                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
-                gl.bindVertexArray(vao);
-                gl.drawArrays(gl.LINES, 0, 2);
+            for (let i = 0; i <= 200; i++){
+                circle_line.push(line[0] + r * Math.cos(i * Math.PI/100), line[1] + r * Math.sin(i * Math.PI/100));
             }
-
             
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
+            gl.bindVertexArray(vao);
+            gl.drawArrays(gl.LINES, 0, 201);
         }
         else { // num == 1 (두 번째 선분인 경우), red
             shader.setVec4("u_color", [1.0, 0.0, 1.0, 1.0]);
@@ -258,15 +257,16 @@ function render() {
         shader.setVec4("u_color", [0.5, 0.5, 0.5, 1.0]);
 
         let r = Math.sqrt((startPoint[0]-tempEndPoint[0])**2 + (startPoint[1]-tempEndPoint[1])**2);
+        let circle_line = [];
+        
+        for (let i = 0; i <= 200; i++){
+            circle_line.push(startPoint[0] + r * Math.cos(i * Math.PI/100), startPoint[1] + r * Math.sin(i * Math.PI/100));
 
-        for (let i = 0; i < 200; i++){
-            let circle_line = [startPoint[0] + r * Math.cos(i * Math.PI/100), startPoint[1] + r * Math.sin(i * Math.PI/100),
-                               startPoint[0] + r * Math.cos((i + 1) * Math.PI/100), startPoint[1] + r * Math.sin((i + 1) * Math.PI/100)];
-
+        }
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
             gl.bindVertexArray(vao);
-            gl.drawArrays(gl.LINES, 0, 2);
-        }
+            gl.drawArrays(gl.LINES, 0, 201);
+        
     } else if (isDrawing && startPoint && tempEndPoint && nom == 1) {
         shader.setVec4("u_color", [0.5, 0.5, 0.5, 1.0]); // 임시 선분의 color는 회색
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([...startPoint, ...tempEndPoint]), 
