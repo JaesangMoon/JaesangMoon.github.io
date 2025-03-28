@@ -216,7 +216,7 @@ function render() {
             
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
             gl.bindVertexArray(vao);
-            gl.drawArrays(gl.LINES, 0, 401);
+            gl.drawArrays(gl.LINES, 0, 402);
         }
         else { // num == 1 (두 번째 선분인 경우), red
             shader.setVec4("u_color", [1.0, 0.0, 1.0, 1.0]);
@@ -258,7 +258,7 @@ function render() {
         }
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(circle_line), gl.STATIC_DRAW);
             gl.bindVertexArray(vao);
-            gl.drawArrays(gl.LINES, 0, 401);
+            gl.drawArrays(gl.LINES, 0, 402);
         
     } else if (isDrawing && startPoint && tempEndPoint && nom == 1) {
         shader.setVec4("u_color", [0.5, 0.5, 0.5, 1.0]); // 임시 선분의 color는 회색
