@@ -1,0 +1,73 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+    background: #fff;
+    color: #333;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* 리셋 버튼은 이미지 위쪽에 고정 */
+  #resetButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  /* 이미지 */
+  #cardImage {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    margin-top: 50px;
+  }
+  
+  /* 설명 텍스트 */
+  #description {
+    font-size: 18px;
+    margin: 12px 0;
+    white-space: pre-line;
+    min-height: 48px;
+    text-align: center;
+  }
+  
+  /* 버튼 그리드 하단 고정 */
+  .button-grid {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .button-grid button {
+    padding: 12px;
+    font-size: 16px;
+    width: 100%;
+  }
+  

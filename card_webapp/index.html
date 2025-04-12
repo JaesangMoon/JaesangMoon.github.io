@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>카드 뒤집기 학습기</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <button id="resetButton" onclick="resetLearned()">리셋</button>
+    <img id="cardImage" src="" alt="학습 이미지" />
+    <p id="description"></p>
+    <div class="button-grid">
+      <button onclick="undoLearned()">취소</button>
+      <button onclick="markLearned()">암기완료</button>
+      <button onclick="prevImage()">이전</button>
+      <button onclick="nextOrShowDescription()">다음</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
