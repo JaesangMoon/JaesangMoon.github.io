@@ -92,7 +92,7 @@ function render() {
     let camZ = cameraCircleRadius * Math.cos(glMatrix.toRadian(cameraCircleSpeed * elapsedTime));
 
     y_coor = elapsedTime * Math.PI / 4;
-    cameraCircleHeight = 5.0 * Math.sin(y_coor) - 5;
+    cameraCircleHeight = 5.0 * Math.sin(y_coor) + 5;
 
     mat4.lookAt(viewMatrix, 
         vec3.fromValues(camX, cameraCircleHeight, camZ), // camera position
