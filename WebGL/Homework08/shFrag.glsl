@@ -24,7 +24,7 @@ struct Light {
 uniform Material material;
 uniform Light light;
 uniform vec3 u_viewPos;
-uniform int u_toonLevel; // TOON: 계단화 레벨
+uniform int u_toonLevel;
 
 void main() {
     // ambient
@@ -49,21 +49,14 @@ void main() {
     }
     vec3 specular = light.specular * spec * material.specular;
     
-    //vec3 result = ambient;
-
-
-    // TOON: diffuse + specular을 계단화, u_toonLevel이 1일 경우 그대로 사용
     vec3 lightPart = ambient + diffuse + specular;
 
     if (u_toonLevel <= 1) {
-        // 단계가 1이면 계단화 없이 원래 값 사용
         lightPart = ambient;
     } else {
-        // 단계가 2 이상이면 계단화 수행
         lightPart = floor(lightPart * float(u_toonLevel)) / float(u_toonLevel - 1);
     }
 
-    // 최종 색상 조합
     vec3 result = lightPart;
     FragColor = vec4(result, 1.0);
 } 
