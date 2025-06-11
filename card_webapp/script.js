@@ -12,7 +12,7 @@ const descElem = document.getElementById("description");
 async function init() {
     // 최대 시도할 수 있는 숫자 (예: 1~999까지)
     for (let i = 1; i <= 999; i++) {
-      const filename = `${i}.png`;
+      const filename = `${i}.jpg`;
       try {
         const res = await fetch(`images/${filename}`, { method: "HEAD" });
         if (res.ok) {
